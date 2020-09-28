@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h2>Add Blog</h2>
+    <form method="POST" action="">
+        {{ form.csrf_token }}
+        <div>{{ form.title.label }} {{ form.title }}
+            {% if form.title.errors %}
+            <ul>
+                {% for error in form.title.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div>{{ form.author.label }} {{ form.author }}
+            {% if form.author.errors %}
+            <ul>
+                {% for error in form.author.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div>{{ form.content.label }} {{ form.content }}
+            {% if form.content.errors %}
+            <ul>
+                {% for error in form.content.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {{ form.submit }}
+    </form>
+</div>
+{% endblock %}

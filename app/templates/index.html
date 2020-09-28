@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Welcome to My Personal Blog </title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Hello!</h1>
+        <p class="lead">This is my simple blog page.</p>
+
+
+    </div>
+</div>
+<div>
+    <p>
+        {{random_quote.quote}}
+        {{random_quote.author}}
+    </p>
+</div>
+</div>
+
+{% for blog in blogs %}
+<div>
+    <h3>{{blog.title}}</h3>
+    <h6>{{blog.author}}</h6>
+    <small>Posted at: {{blog.date_posted}}</small>
+    <p>{{blog.content}}</p>
+
+    <form action="{{ url_for('blog.blog_comment', id=blog.id) }}" method="post">
+        <button type=submit>Comment</button>
+    </form>
+</div>
+{% endfor %}
+{% endblock %}

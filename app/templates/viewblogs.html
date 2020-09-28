@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for blog in blogs %}
+<div>
+    <h3>{{blog.title}}</h3>
+    <h6>{{blog.author}}</h6>
+    <small>Posted at: {{blog.date_posted}}</small>
+    <p>{{blog.content}}</p>
+
+    <form action="{{ url_for('blog.blog_delete', id=blog.id) }}" method="post">
+        <button type=submit>Delete</button>
+    </form>
+    <form action="{{ url_for('blog.blog_edit', id=blog.id) }}" method="post">
+        <button type=submit>Edit</button>
+    </form>
+    <form action="{{ url_for('blog.manage_comment', id=blog.id) }}" method="post">
+        <button type=submit>Manage Comments</button>
+    </form>
+
+</div>
+{% endfor %}
+{% endblock %}

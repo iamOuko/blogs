@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h3>{{blog.title}}</h3>
+    <h6>{{blog.author}}</h6>
+    <small>Posted at: {{blog.date_posted}}</small>
+    <p>{{blog.content}}</p>
+
+</div>
+
+
+<div>
+    {% for comment in comments %}
+    <p>{{comment.comment}}</p>
+
+    <form action="{{ url_for('blog.comment_delete', comment_id=comment.id, blog_id=blog.id) }}" method="post">
+        <button class="btn btn-primary" type=submit>Delete</button>
+    </form>
+    {% endfor %}
+
+</div>
+{% endblock %}

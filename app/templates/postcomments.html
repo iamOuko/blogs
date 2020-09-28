@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <h3>{{blog.title}}</h3>
+        <h6>{{blog.author}}</h6>
+        <small>Posted at: {{blog.date_posted}}</small>
+        <p>{{blog.content}}</p>
+    </div>
+    <div>
+        <form method="POST" action="">
+            {{ form.csrf_token }}
+            <div>{{ form.comment.label }} {{ form.comment }}
+                {% if form.comment.errors %}
+                <ul>
+                    {% for error in form.comment.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+    <div>
+        {% for comment in comments %}
+        <p>{{comment.comment}}</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
