@@ -3,7 +3,7 @@ from . import blog
 from .forms import BlogForm, CommentForm, SubscribeForm
 from .. import db
 from ..models import BlogPost, BlogComments, User
-# from ..email import mail_message
+from ..email import mail_message
 import urllib
 import json
 
@@ -22,9 +22,10 @@ def index():
 def user():
     form = SubscribeForm()
 
-    user = User( name = form.name.data)
-    db.session.add(user)
-    db.session.commit()
+    if form.validate_on_submit():
+        user = User(email = form.email.data, name = form.name.data)
+        db.session.add(user)
+        db.session.commit()
 
     return render_template('subscribe.html', form=form)
 

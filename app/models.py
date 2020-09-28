@@ -21,15 +21,10 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
+    email = db.Column(db.String(255),unique = True,index = True)
     
 
     def __repr__(self):
         return f'User {self.username}'
     
-# create a model ya user subscriber details e.,g it should have name and email
-# create a form to input user details
-#  add the user detail to the database
 
-# add navbar -- on the navbar add a lkink called subscribe. On this link whgen clicked display sibscribe form
-
-# authentication
